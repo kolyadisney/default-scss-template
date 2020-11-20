@@ -1,0 +1,87 @@
+@mixin transition($prop: all, $dur: 0.3s, $ease: ease) {
+    -webkit-transition: $prop $dur $ease;
+    -moz-transition   : $prop $dur $ease;
+    transition        : $prop $dur $ease;
+}
+
+@mixin bg-image($bg-pos: center center, $bg-rep: no-repeat, $bg-size: cover) {
+    background-position    : $bg-pos;
+    background-repeat      : $bg-rep;
+    -webkit-background-size: $bg-size;
+    background-size        : $bg-size;
+}
+
+@mixin centered() {
+    position : absolute;
+    top      : 50%;
+    left     : 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin coverdiv() {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    right   : 0;
+    bottom  : 0;
+}
+//change
+@mixin font($font-face, $font-name, $font-wieght) {
+    @font-face {
+        font-family: $font-name;
+        src        : url('../fonts/#{$font-face}.eot');
+        src        : url('../fonts/#{$font-face}.eot?iefix') format('eot'),
+        url('../fonts/#{$font-face}.woff') format('woff'),
+        url('../fonts/#{$font-face}.woff2') format('woff2'),
+        url('../fonts/#{$font-face}.ttf') format('truetype'),
+        url('../fonts/#{$font-face}.svg') format('svg');
+        font-weight: $font-wieght;
+        font-style : normal;
+    }
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+
+    &:-moz-placeholder {
+        @content
+    }
+
+    &::-moz-placeholder {
+        @content
+    }
+
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+
+@mixin media($value, $direction: max, $dimension: width) {
+    $corrector: 1;
+
+    @if $direction==max {
+        $corrector: 0;
+    }
+
+    @if type-of($value)==number {
+        $dir: #{$direction}-width;
+
+        @if $dimension==height {
+            $dir: #{$direction}-height;
+        }
+
+        @media only screen and ($dir: $value + $corrector) {
+            @content;
+        }
+
+    }
+
+    @else {
+        @media #{$value} {
+            @content;
+        }
+    }
+}

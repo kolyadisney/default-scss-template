@@ -1,0 +1,37 @@
+@function get-vw($fontsize, $width: 1920) {
+    $vw-context: ($width * 0.01) * 1px;
+    @return ($target / $vw-context) * 1vw;
+}
+
+@function get-vh($height: 940, $object) {
+    $vh: ($height * 0.01) * 1px;
+    @return ($object / $vh) * 1vh;
+}
+
+
+// get rem from px
+@function strip-units ($number) {
+	@if type-of($number) == "number" and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+	@return $number;
+}
+
+@function em($value, $base: 16px, $unit: 1em) {
+	@if not unitless($value) {
+		$value: strip-units($value);
+	}
+	@if not unitless($base) {
+		$base: strip-units($base);
+	}
+	@return ($value / $base) * $unit;
+}
+
+@function rem($value, $base: 16px) {
+	@return em($value, $base, 1rem);
+}
+
+//get letter-spacing
+@function lspace ($space, $fontsize) {
+	@return ($space / 1000) * rem($fontsize);
+}

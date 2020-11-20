@@ -1,0 +1,47 @@
+h1 {}
+
+h2 {}
+
+h3 {}
+
+h4 {}
+
+hr {}
+
+p {}
+
+a:not(.full-link) {}
+
+ol {
+  li {}
+}
+
+ul {
+  li {}
+}
+
+blockquote {}
+
+iframe {
+  width: 100%;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+.full-link {
+  @include coverdiv;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin            : 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
